@@ -1,5 +1,4 @@
 #include <iostream>
-#include "StudentManagement.h"
 using namespace std;
 class Student
 {

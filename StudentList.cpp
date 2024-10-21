@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StudentList.h"
+#include "StudentNode.h"
 using namespace std;
 
 // hàm dựng mặc định
@@ -18,10 +18,11 @@ StudentList::StudentList(const StudentList &studentList)
     }
     else
     {
-        this -> head = new StudentNode(studentList.head->getStudent(), nullptr);
+        this->head = new StudentNode(studentList.head->getStudent(), nullptr);
         StudentNode *currentSource = studentList.head->getNext();
         StudentNode *currentDest = this->head;
-        while(currentSource!=nullptr){
+        while (currentSource != nullptr)
+        {
             StudentNode *newNode = new StudentNode(currentSource->getStudent(), nullptr);
             currentDest->setNext(newNode);
             currentDest = newNode;
@@ -40,4 +41,46 @@ StudentList::~StudentList()
         this->head = this->head->getNext();
         delete temp;
     }
+}
+
+// hàm thêm một node vào cuối danh sách
+void StudentList::addTail(StudentNode *studentNode)
+{
+    if (this->head == nullptr)
+    {
+        this->head = studentNode;
+        this->tail = studentNode;
+    }
+    else
+    {
+        this->tail->next = studentNode;
+        this->tail = studentNode;
+    }
+}
+
+// hàm nhập danh sách
+istream &operator>>(istream &in, StudentList &studentList)
+{
+    int size;
+    cout << "Nhap so luong sinh vien: ";
+    cin >> size;
+    for (int i = 0; i < size; i++)
+    {
+        cout << "\nNHAP THONG TIN SINH VIEN THU " << i + 1 << " :" << endl;
+        Student student;
+        in >> student;
+        StudentNode *studentNode = new StudentNode(student, nullptr);
+        studentList.addTail(studentNode);
+    }
+    return in;
+}
+
+//hàm xuất danh sách
+ostream &operator<<(ostream &out, StudentList &studentList){
+    StudentNode *studentNode = studentList.head;
+    while(studentNode != nullptr){
+        out<<studentNode->student;
+        studentNode = studentNode->next;
+    }
+    return out;
 }

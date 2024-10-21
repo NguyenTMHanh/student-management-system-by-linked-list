@@ -25,7 +25,6 @@ StudentNode::StudentNode(const StudentNode &studentNode)
 // hàm hủy
 StudentNode::~StudentNode()
 {
-    delete this->next;
 }
 
 //hàm lấy con trỏ trỏ đến node kế tiếp

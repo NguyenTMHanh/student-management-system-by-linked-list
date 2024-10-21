@@ -1,6 +1,8 @@
-#include <iostream>
+#ifndef STUDENT_NODE_H
+#define STUDENT_NODE_H
+
 #include "Student.h"
-using namespace std;
+#include "StudentList.h"
 class StudentNode
 {
     Student student;
@@ -15,4 +17,8 @@ public:
     Student getStudent();
     void setNext(StudentNode *nextNode);
     void setStudent(Student student);
+    friend void StudentList::addTail(StudentNode *studentNode);
+    friend ostream &operator<<(ostream &out, StudentList &studentList);
 };
+
+#endif 

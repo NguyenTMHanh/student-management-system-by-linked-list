@@ -196,7 +196,70 @@ void StudentList::removeStudent(string id)
             }
         }
     }
-    else{
-        cout<<"khong tim thay sinh vien can xoa"<<endl;
+    else
+    {
+        cout << "khong tim thay sinh vien can xoa" << endl;
+    }
+}
+
+// hàm cập nhật thông tin của sinh viên theo id
+void StudentList::updateStudentById(string id)
+{
+    StudentNode *currentStudent = this->getStudentNodeById(id);
+    if (currentStudent != nullptr)
+    {
+        cout << "ban muon cap nhat thong tin gi cua sinh vien co ma so " << id << "?" << endl;
+        cout << "1. Ho va ten" << endl;
+        cout << "2. Lop" << endl;
+        cout << "3. Khoa" << endl;
+        cout << "4. Gioi tinh" << endl;
+        cout << "5. Diem Toan" << endl;
+        cout << "6. Diem Tieng anh" << endl;
+        cout << "7. Diem Van" << endl;
+        int chose;
+        do
+        {
+            cout << "Hay nhap lua chon cua ban(ban muon cap nhat thong tin nao cua sinh vien): ";
+            cin >> chose;
+            switch (chose)
+            {
+            case 1:
+                cout << "Nhap ten: ";
+                getline(cin >> std::ws, currentStudent->student.name);
+                break;
+            case 2:
+                cout << "Nhap lop: ";
+                cin >> currentStudent->student.className;
+                break;
+            case 3:
+                cout << "nhap khoa: ";
+                cin >> currentStudent->student.facultyName;
+                break;
+            case 4:
+                cout << "Nhap gioi tinh:";
+                cin >> currentStudent->student.sex;
+                break;
+            case 5:
+                cout << "Nhap diem Toan: ";
+                cin >> currentStudent->student.mathScore;
+                currentStudent->student.averageScore = currentStudent->student.caculateGPA();
+                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance(currentStudent->student.averageScore);
+                break;
+            case 6:
+                cout << "Nhap diem Tieng anh: ";
+                cin >> currentStudent->student.englishScore;
+                currentStudent->student.averageScore = currentStudent->student.caculateGPA();
+                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance(currentStudent->student.averageScore);
+                break;
+            case 7:
+                cout << "Nhap diem Van: ";
+                cin >> currentStudent->student.literatureScore;
+                currentStudent->student.averageScore = currentStudent->student.caculateGPA();
+                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance(currentStudent->student.averageScore);
+                break;
+            default:
+                break;
+            }
+        } while (chose > 0 && chose < 8);
     }
 }

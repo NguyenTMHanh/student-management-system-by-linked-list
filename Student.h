@@ -1,4 +1,5 @@
 #include <iostream>
+#include "StudentList.h"
 using namespace std;
 class Student
 {
@@ -24,4 +25,5 @@ public:
     ~Student();
     friend istream &operator>>(istream &in, Student &student);
     friend ostream &operator<<(ostream &out, Student &student);
+    friend void StudentList::updateStudentById(string id);
 };

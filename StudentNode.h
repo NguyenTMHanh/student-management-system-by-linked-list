@@ -23,6 +23,7 @@ public:
     friend StudentNode* StudentList::getStudentNodeById(string id);
     friend StudentNode* StudentList::getStudentNodeBeforeStudent(StudentNode *studentNode);
     friend void StudentList::removeStudent(string id);
+    friend void StudentList::updateStudentById(string id);
 };
 
 #endif 

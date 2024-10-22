@@ -19,6 +19,7 @@ public:
     void setStudent(Student student);
     friend void StudentList::addTail(StudentNode *studentNode);
     friend ostream &operator<<(ostream &out, StudentList &studentList);
+    friend void StudentList::findStudentById();
 };
 
 #endif 

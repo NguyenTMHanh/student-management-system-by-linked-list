@@ -17,6 +17,7 @@ public:
     friend ostream &operator<<(ostream &out, StudentList &studentList);
     void addTail(StudentNode *studentNode);
     void addListStudent();
+    void findStudentById();
 };
-
+void formatHeaderPrint();
 #endif

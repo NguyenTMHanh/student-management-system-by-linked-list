@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "StudentNode.h"
 using namespace std;
 
@@ -78,6 +79,7 @@ istream &operator>>(istream &in, StudentList &studentList)
 //hàm xuất danh sách
 ostream &operator<<(ostream &out, StudentList &studentList){
     StudentNode *studentNode = studentList.head;
+    formatHeaderPrint();
     while(studentNode != nullptr){
         out<<studentNode->student;
         studentNode = studentNode->next;
@@ -91,11 +93,39 @@ void StudentList::addListStudent(){
     int i = 1;
     Student student;
     StudentNode *studentNode;
-    cout<<"nhap so luong sinh vien muon them: "; cin>>size;
+    cout<<"\nnhap so luong sinh vien muon them: "; cin>>size;
     while(i<=size){
         cout<<"\nNHAP THONG TIN SINH VIEN MUON THEM THU "<<i<<" :"<<endl;
         cin>>student;
         this->addTail(new StudentNode (student, nullptr));
         i++;
     }
+}
+
+//hàm tìm kiếm một sinh viên dựa trên mã số sinh viên
+//hàm này trả về thông tin của sinh viên có mã số sinh viên trùng khớp đầu tiên được tìm thấy
+void StudentList::findStudentById(){
+    string id;
+    cout<<"\nnhap ma so sinh vien cua sinh vien ban muon tim kiem: "; cin>>id;
+    StudentNode *studentNode;
+    studentNode = this->head;
+    while(studentNode != nullptr){
+        if(studentNode->student.getIdStudent()==id){
+            formatHeaderPrint();
+            cout<<studentNode->student;
+            return;
+        }
+        studentNode = studentNode->next;
+    }
+    cout<<"khong tim thay sinh vien!"<<endl;
+}
+
+//hàm này format cho tên cột khi in ra console
+void formatHeaderPrint()
+{
+    cout << "\n                                                        DANH SACH SINH VIEN                                " << endl;
+    cout << left << setw(5) << "STT" << setw(15) << "ID" << setw(30) << "Ho va ten"
+         << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
+         << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
+         << setw(10) << "Hoc luc" << endl;
 }

@@ -9,6 +9,10 @@ int main(){
     // studenList.addListStudent();
     // cout<<studenList;
 
-    studenList.searchStudent();
+    // studenList.findStudentById();
+    string id;
+    cout<<"nhap ma so sinh vien cua sinh vien ma ban muon xoa: "; cin>>id;
+    studenList.removeStudent(id);
+    cout<<studenList;
     return 0;
 }

@@ -20,6 +20,9 @@ public:
     friend void StudentList::addTail(StudentNode *studentNode);
     friend ostream &operator<<(ostream &out, StudentList &studentList);
     friend void StudentList::findStudentById();
+    friend StudentNode* StudentList::getStudentNodeById(string id);
+    friend StudentNode* StudentList::getStudentNodeBeforeStudent(StudentNode *studentNode);
+    friend void StudentList::removeStudent(string id);
 };
 
 #endif 

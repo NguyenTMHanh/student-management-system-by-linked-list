@@ -18,6 +18,9 @@ public:
     void addTail(StudentNode *studentNode);
     void addListStudent();
     void findStudentById();
+    StudentNode* getStudentNodeById(string id);
+    void removeStudent(string id);
+    StudentNode* getStudentNodeBeforeStudent(StudentNode *StudentNode);
 };
 void formatHeaderPrint();
 #endif

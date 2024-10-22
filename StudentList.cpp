@@ -76,51 +76,60 @@ istream &operator>>(istream &in, StudentList &studentList)
     return in;
 }
 
-//hàm xuất danh sách
-ostream &operator<<(ostream &out, StudentList &studentList){
+// hàm xuất danh sách
+ostream &operator<<(ostream &out, StudentList &studentList)
+{
     StudentNode *studentNode = studentList.head;
     formatHeaderPrint();
-    while(studentNode != nullptr){
-        out<<studentNode->student;
+    while (studentNode != nullptr)
+    {
+        out << studentNode->student;
         studentNode = studentNode->next;
     }
     return out;
 }
 
-//hàm thêm một mảng sinh viên vào danh sách
-void StudentList::addListStudent(){
+// hàm thêm một mảng sinh viên vào danh sách
+void StudentList::addListStudent()
+{
     int size;
     int i = 1;
     Student student;
     StudentNode *studentNode;
-    cout<<"\nnhap so luong sinh vien muon them: "; cin>>size;
-    while(i<=size){
-        cout<<"\nNHAP THONG TIN SINH VIEN MUON THEM THU "<<i<<" :"<<endl;
-        cin>>student;
-        this->addTail(new StudentNode (student, nullptr));
+    cout << "\nnhap so luong sinh vien muon them: ";
+    cin >> size;
+    while (i <= size)
+    {
+        cout << "\nNHAP THONG TIN SINH VIEN MUON THEM THU " << i << " :" << endl;
+        cin >> student;
+        this->addTail(new StudentNode(student, nullptr));
         i++;
     }
 }
 
-//hàm tìm kiếm một sinh viên dựa trên mã số sinh viên
-//hàm này trả về thông tin của sinh viên có mã số sinh viên trùng khớp đầu tiên được tìm thấy
-void StudentList::findStudentById(){
+// hàm tìm kiếm một sinh viên dựa trên mã số sinh viên
+// hàm này trả về thông tin của sinh viên có mã số sinh viên trùng khớp đầu tiên được tìm thấy
+void StudentList::findStudentById()
+{
     string id;
-    cout<<"\nnhap ma so sinh vien cua sinh vien ban muon tim kiem: "; cin>>id;
+    cout << "\nnhap ma so sinh vien cua sinh vien ban muon tim kiem: ";
+    cin >> id;
     StudentNode *studentNode;
     studentNode = this->head;
-    while(studentNode != nullptr){
-        if(studentNode->student.getIdStudent()==id){
+    while (studentNode != nullptr)
+    {
+        if (studentNode->student.getIdStudent() == id)
+        {
             formatHeaderPrint();
-            cout<<studentNode->student;
+            cout << studentNode->student;
             return;
         }
         studentNode = studentNode->next;
     }
-    cout<<"khong tim thay sinh vien!"<<endl;
+    cout << "khong tim thay sinh vien!" << endl;
 }
 
-//hàm này format cho tên cột khi in ra console
+// hàm này format cho tên cột khi in ra console
 void formatHeaderPrint()
 {
     cout << "\n                                                        DANH SACH SINH VIEN                                " << endl;
@@ -128,4 +137,66 @@ void formatHeaderPrint()
          << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
          << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
          << setw(10) << "Hoc luc" << endl;
+}
+
+// hàm này trả về sinh viên đầu tiên có mã số sinh viên trùng với mã số sinh viên cần tìm
+StudentNode *StudentList::getStudentNodeById(string id)
+{
+    StudentNode *studentNode;
+    studentNode = this->head;
+    while (studentNode != nullptr)
+    {
+        if (studentNode->student.getIdStudent() == id)
+        {
+            return studentNode;
+        }
+        studentNode = studentNode->next;
+    }
+    return nullptr;
+}
+
+// hàm trả về 1 student nằm trước 1 student
+StudentNode *StudentList::getStudentNodeBeforeStudent(StudentNode *studentNode)
+{
+    StudentNode *currentStudent;
+    currentStudent = this->head;
+    while (currentStudent != nullptr)
+    {
+        if (currentStudent->next == studentNode)
+        {
+            return currentStudent;
+        }
+        currentStudent = currentStudent->next;
+    }
+    return nullptr;
+}
+
+// hàm xóa một student theo id
+void StudentList::removeStudent(string id)
+{
+    StudentNode *currentStudent = getStudentNodeById(id);
+    if (currentStudent != nullptr)
+    {
+        if (currentStudent == this->head)
+        {
+            this->head = currentStudent->next;
+            delete currentStudent;
+        }
+        else
+        {
+            StudentNode *beforeStudent = getStudentNodeBeforeStudent(currentStudent);
+            if (beforeStudent == nullptr)
+            {
+                cout << "Loi: khong tim thay sinh vien nam truoc sinh vien hien tai" << endl;
+            }
+            else
+            {
+                beforeStudent->next = currentStudent->next;
+                delete currentStudent;
+            }
+        }
+    }
+    else{
+        cout<<"khong tim thay sinh vien can xoa"<<endl;
+    }
 }

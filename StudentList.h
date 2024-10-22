@@ -22,6 +22,7 @@ public:
     void removeStudent(string id);
     StudentNode* getStudentNodeBeforeStudent(StudentNode *StudentNode);
     void updateStudentById(string id);
+    void sortStudentListByGPA();
 };
 void formatHeaderPrint();
 #endif

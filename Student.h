@@ -26,4 +26,5 @@ public:
     friend istream &operator>>(istream &in, Student &student);
     friend ostream &operator<<(ostream &out, Student &student);
     friend void StudentList::updateStudentById(string id);
+    friend void StudentList::sortStudentListByGPA();
 };

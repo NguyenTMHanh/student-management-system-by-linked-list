@@ -16,9 +16,12 @@ int main()
     // studenList.removeStudent(id);
     // cout<<studenList;
 
-    cout << "nhap ma so sinh vien cua sinh vien ban muon cap nhat: ";
-    cin >> id;
-    studenList.updateStudentById(id);
+    // cout << "nhap ma so sinh vien cua sinh vien ban muon cap nhat: ";
+    // cin >> id;
+    // studenList.updateStudentById(id);
+    // cout << studenList;
+
+    studenList.sortStudentListByGPA();
     cout << studenList;
     return 0;
 }

@@ -24,6 +24,7 @@ public:
     friend StudentNode* StudentList::getStudentNodeBeforeStudent(StudentNode *studentNode);
     friend void StudentList::removeStudent(string id);
     friend void StudentList::updateStudentById(string id);
+    friend void StudentList::sortStudentListByGPA();
 };
 
 #endif 

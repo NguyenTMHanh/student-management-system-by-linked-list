@@ -84,3 +84,18 @@ ostream &operator<<(ostream &out, StudentList &studentList){
     }
     return out;
 }
+
+//hàm thêm một mảng sinh viên vào danh sách
+void StudentList::addListStudent(){
+    int size;
+    int i = 1;
+    Student student;
+    StudentNode *studentNode;
+    cout<<"nhap so luong sinh vien muon them: "; cin>>size;
+    while(i<=size){
+        cout<<"\nNHAP THONG TIN SINH VIEN MUON THEM THU "<<i<<" :"<<endl;
+        cin>>student;
+        this->addTail(new StudentNode (student, nullptr));
+        i++;
+    }
+}

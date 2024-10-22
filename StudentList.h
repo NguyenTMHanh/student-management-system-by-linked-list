@@ -16,6 +16,7 @@ public:
     friend istream &operator>>(istream &in, StudentList &studentList);
     friend ostream &operator<<(ostream &out, StudentList &studentList);
     void addTail(StudentNode *studentNode);
+    void addListStudent();
 };
 
 #endif

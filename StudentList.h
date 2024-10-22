@@ -21,6 +21,7 @@ public:
     StudentNode* getStudentNodeById(string id);
     void removeStudent(string id);
     StudentNode* getStudentNodeBeforeStudent(StudentNode *StudentNode);
+    void updateStudentById(string id);
 };
 void formatHeaderPrint();
 #endif

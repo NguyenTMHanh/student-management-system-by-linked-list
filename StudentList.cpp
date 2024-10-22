@@ -263,3 +263,19 @@ void StudentList::updateStudentById(string id)
         } while (chose > 0 && chose < 8);
     }
 }
+
+//hàm sắp xếp danh sách theo GPA
+void StudentList::sortStudentListByGPA(){
+    if(this->head == nullptr){
+        return;
+    }
+    for(StudentNode *temp = this->head; temp!=nullptr; temp=temp->next){
+        for(StudentNode *temp2 = temp->next; temp2!=nullptr; temp2=temp2->next){
+            if(temp2->student.averageScore > temp->student.averageScore){
+                Student tempStudent = temp2->student;
+                temp2->student = temp->student;
+                temp->student = tempStudent;
+            }
+        }
+    }
+}

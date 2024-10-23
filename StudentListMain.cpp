@@ -1,17 +1,18 @@
 #include <iostream>
+#include <fstream>
 #include "StudentList.h"
 using namespace std;
 
 int main()
 {
     StudentList studenList;
-    cin >> studenList;
-    cout << studenList;
+    // cin >> studenList;
+    // cout << studenList;
     // studenList.addListStudent();
     // cout<<studenList;
 
     // studenList.findStudentById();
-    string id;
+    // string id;
     // cout<<"nhap ma so sinh vien cua sinh vien ma ban muon xoa: "; cin>>id;
     // studenList.removeStudent(id);
     // cout<<studenList;
@@ -21,7 +22,10 @@ int main()
     // studenList.updateStudentById(id);
     // cout << studenList;
 
-    studenList.sortStudentListByGPA();
-    cout << studenList;
+    // studenList.sortStudentListByGPA();
+    // cout << studenList;
+
+    ifstream input;
+    studenList.readFile(input);
     return 0;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 #ifndef STUDENT_LIST_H
 #define STUDENT_LIST_H
@@ -23,6 +24,7 @@ public:
     StudentNode* getStudentNodeBeforeStudent(StudentNode *StudentNode);
     void updateStudentById(string id);
     void sortStudentListByGPA();
+    void readFile(ifstream &input);
 };
 void formatHeaderPrint();
 #endif

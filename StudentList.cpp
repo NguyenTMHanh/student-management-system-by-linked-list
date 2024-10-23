@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include "StudentNode.h"
 using namespace std;
 
@@ -264,18 +265,59 @@ void StudentList::updateStudentById(string id)
     }
 }
 
-//hàm sắp xếp danh sách theo GPA
-void StudentList::sortStudentListByGPA(){
-    if(this->head == nullptr){
+// hàm sắp xếp danh sách theo GPA
+void StudentList::sortStudentListByGPA()
+{
+    if (this->head == nullptr)
+    {
         return;
     }
-    for(StudentNode *temp = this->head; temp!=nullptr; temp=temp->next){
-        for(StudentNode *temp2 = temp->next; temp2!=nullptr; temp2=temp2->next){
-            if(temp2->student.averageScore > temp->student.averageScore){
+    for (StudentNode *temp = this->head; temp != nullptr; temp = temp->next)
+    {
+        for (StudentNode *temp2 = temp->next; temp2 != nullptr; temp2 = temp2->next)
+        {
+            if (temp2->student.averageScore > temp->student.averageScore)
+            {
                 Student tempStudent = temp2->student;
                 temp2->student = temp->student;
                 temp->student = tempStudent;
             }
         }
     }
+}
+
+// hàm đọc file đầu vào input
+void StudentList::readFile(ifstream &input)
+{
+    input.open("input.txt", ios::in);
+    if (!input.is_open())
+    {
+        cout << "khong the mo file" << endl;
+        return;
+    }
+    string line;
+    while (getline(input, line))
+    {
+        Student student;
+        stringstream ss(line);
+        string math, english, literature;
+        getline(ss, student.id, ',');
+        getline(ss, student.name, ',');
+        getline(ss, student.className, ',');
+        getline(ss, student.facultyName, ',');
+        getline(ss, student.sex, ',');
+        getline(ss, math, ',');
+        getline(ss, english, ',');
+        getline(ss, literature, ',');
+        student.mathScore = stof(math);
+        student.englishScore = stof(english);
+        student.literatureScore = stof(literature);
+        student.averageScore = student.caculateGPA();
+        student.academicPerformance = student.getAcademicPerformance(student.averageScore);
+        StudentNode *studentNode = new StudentNode(student, nullptr);
+        this->addTail(studentNode);
+    }
+    formatHeaderPrint();
+    cout << *this;
+    input.close();
 }

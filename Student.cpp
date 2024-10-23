@@ -10,21 +10,21 @@ Student::Student(string id, string name, string className,
                                           literatureScore(literatureScore)
 {
     averageScore = (mathScore + englishScore + literatureScore) / 3;
-    academicPerformance = getAcademicPerformance(averageScore);
+    academicPerformance = getAcademicPerformance();
 }
 
 // hàm xét học lực của 1 sinh viên
-string Student::getAcademicPerformance(float averageScore)
+string Student::getAcademicPerformance()
 {
-    if (averageScore >= 8.5)
+    if (this->averageScore >= 8.5)
     {
         return "Gioi";
     }
-    else if (averageScore >= 7)
+    else if (this->averageScore >= 7)
     {
         return "Kha";
     }
-    else if (averageScore >= 5)
+    else if (this->averageScore >= 5)
     {
         return "Trung Binh";
     }
@@ -74,7 +74,7 @@ istream &operator>>(istream &in, Student &student)
     cout << "nhap diem van: ";
     in >> student.literatureScore;
     student.averageScore = student.caculateGPA();
-    student.academicPerformance = student.getAcademicPerformance(student.averageScore);
+    student.academicPerformance = student.getAcademicPerformance();
     return in;
 }
 

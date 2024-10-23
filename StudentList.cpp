@@ -244,19 +244,19 @@ void StudentList::updateStudentById(string id)
                 cout << "Nhap diem Toan: ";
                 cin >> currentStudent->student.mathScore;
                 currentStudent->student.averageScore = currentStudent->student.caculateGPA();
-                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance(currentStudent->student.averageScore);
+                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance();
                 break;
             case 6:
                 cout << "Nhap diem Tieng anh: ";
                 cin >> currentStudent->student.englishScore;
                 currentStudent->student.averageScore = currentStudent->student.caculateGPA();
-                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance(currentStudent->student.averageScore);
+                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance();
                 break;
             case 7:
                 cout << "Nhap diem Van: ";
                 cin >> currentStudent->student.literatureScore;
                 currentStudent->student.averageScore = currentStudent->student.caculateGPA();
-                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance(currentStudent->student.averageScore);
+                currentStudent->student.academicPerformance = currentStudent->student.getAcademicPerformance();
                 break;
             default:
                 break;
@@ -313,7 +313,7 @@ void StudentList::readFile(ifstream &input)
         student.englishScore = stof(english);
         student.literatureScore = stof(literature);
         student.averageScore = student.caculateGPA();
-        student.academicPerformance = student.getAcademicPerformance(student.averageScore);
+        student.academicPerformance = student.getAcademicPerformance();
         StudentNode *studentNode = new StudentNode(student, nullptr);
         this->addTail(studentNode);
     }

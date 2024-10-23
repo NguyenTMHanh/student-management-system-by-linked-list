@@ -25,6 +25,7 @@ public:
     void updateStudentById(string id);
     void sortStudentListByGPA();
     void readFile(ifstream &input);
+    void writeFile(ofstream &output);
 };
 void formatHeaderPrint();
 #endif

@@ -26,6 +26,8 @@ int main()
     // cout << studenList;
 
     ifstream input;
+    ofstream output;
     studenList.readFile(input);
+    studenList.writeFile(output);
     return 0;
 }

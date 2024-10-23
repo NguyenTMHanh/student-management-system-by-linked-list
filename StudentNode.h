@@ -25,6 +25,7 @@ public:
     friend void StudentList::removeStudent(string id);
     friend void StudentList::updateStudentById(string id);
     friend void StudentList::sortStudentListByGPA();
+    friend void StudentList::writeFile(ofstream &output);
 };
 
 #endif 

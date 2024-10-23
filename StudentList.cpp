@@ -317,7 +317,29 @@ void StudentList::readFile(ifstream &input)
         StudentNode *studentNode = new StudentNode(student, nullptr);
         this->addTail(studentNode);
     }
-    formatHeaderPrint();
     cout << *this;
     input.close();
+}
+
+// hàm ghi danh sách sinh viên ra file output
+void StudentList::writeFile(ofstream &output)
+{
+    output.open("output.txt", ios::out);
+    StudentNode *studentNode;
+    studentNode = this->head;
+    while (studentNode != nullptr)
+    {
+        output << studentNode->student.id << ",";
+        output << studentNode->student.name << ",";
+        output << studentNode->student.className << ",";
+        output << studentNode->student.facultyName << ",";
+        output << studentNode->student.sex << ",";
+        output << studentNode->student.mathScore << ",";
+        output << studentNode->student.englishScore << ",";
+        output << studentNode->student.literatureScore << ",";
+        output << studentNode->student.averageScore << ",";
+        output << studentNode->student.academicPerformance << endl;
+        studentNode = studentNode->next;
+    }
+    output.close();
 }

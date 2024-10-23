@@ -28,4 +28,5 @@ public:
     friend void StudentList::updateStudentById(string id);
     friend void StudentList::sortStudentListByGPA();
     friend void StudentList::readFile(ifstream &input);
+    friend void StudentList::writeFile(ofstream &output);
 };
